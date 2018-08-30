@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import javafx.util.Pair;
 
 public class Board 
 {
@@ -27,22 +28,38 @@ public class Board
 	{
 		int tempMines = mines;
 		// i could guarantee this method in exactly o(n^2)
-		Random randomI = new Random();
-		Random randomJ = new Random();
 		final int [] dr = {1,1,0,-1,-1,-1, 0, 1};
 		final int [] dc = {0,1,1, 1, 0,-1,-1,-1};
+		List <Pair <Integer,Integer> > RandomPairs =
+				new ArrayList <Pair <Integer,Integer> > ();
+		
+		for(int i = 0; i < height;++i)
+			for(int j = 0; j < width; ++j)
+				RandomPairs.add(new Pair<Integer,Integer> (i,j));
+		
+		Collections.shuffle(RandomPairs);
+		
+		
 		while(tempMines > 0)
 		{
-			int i,j;
-			// TODO A better loop
-			while(true)
+			int i = 0,j = 0;
+			boolean placedMine = false;
+			
+			for(Pair <Integer,Integer> temp : RandomPairs)
 			{
-				i = randomI.nextInt(height);
-				j = randomJ.nextInt(width);
-				if(BoardRepresentation[i][j] != 9) break;
+				i = temp.getKey();
+				j = temp.getValue();
+				if(BoardRepresentation[i][j] != 9 && BoardRepresentation[i][j] == 0)
+				{
+					RandomPairs.remove(temp);
+					BoardRepresentation[i][j] = 9;
+					placedMine = true;
+					break;
+				}
 			}
 			
-			for(int d = 0; d < 8; ++d)
+	
+			for(int d = 0; d < 8 && placedMine; ++d)
 			{
 				int checkcellI = i + dr[d];
 				int checkcellJ = j + dc[d];

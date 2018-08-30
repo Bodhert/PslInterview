@@ -3,7 +3,7 @@ package com.bodhert.maven.pslMineSweeper;
 public class PrintBoard 
 {
 	
-	// TODO if the numbers advance eg 10..11..12 it desubicated the index
+	// TODO if the numbers advance eg 10..11..12 it create a bad position the index
 	public static void prettyPrintBoard(Board uniqueBoard)
 	{
 		int height = uniqueBoard.getHeight();
@@ -41,5 +41,25 @@ public class PrintBoard
 			System.out.println();
 		}
 	}
+	
+	public static void PrintAns(Board uniqueBoard)
+	{
+		int height = uniqueBoard.getHeight();
+		int widht = uniqueBoard.getWidth();
+
+		for(int i = 0; i < height; ++i)
+		{
+			for(int j = 0; j < widht; ++j)
+			{
+				System.out.print(uniqueBoard.getBoardRepresentation(i, j) + " ");
+			}
+			System.out.println();
+			System.out.println();
+		}
+	}
+	
+	
+	
+	
 	
 }
