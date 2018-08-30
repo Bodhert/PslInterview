@@ -51,8 +51,7 @@ public class Logic
 					{
 						int checkcellI = i + dr[d];
 						int checkcellJ = j + dc[d];
-						if(areInRange(checkcellI, checkcellJ) && 
-							!hasCloseMines(checkcellI, checkcellJ))
+						if(areInRange(checkcellI, checkcellJ))
 								openCells(checkcellI, checkcellJ);
 					}
 				}

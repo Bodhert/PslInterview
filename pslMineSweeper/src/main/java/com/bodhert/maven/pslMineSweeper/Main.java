@@ -7,9 +7,16 @@ public class Main {
 	public static void main(String[] args) 
 	{
 		Scanner sc = new Scanner(System.in);
-		Board uniqueboard = Board.setUniqueBoard(3,3,2);
-		Logic logic = new Logic();
 		InputHandler input = new InputHandler();
+		System.out.println("Input  (heigth) (width) (Number of Mines)");
+		String dimension = sc.nextLine();
+		int sizes[] = input.getNumbers(dimension);
+		int heigth = sizes[0];
+		int width = sizes[1];
+		int numMines = sizes[2];
+		
+		Board uniqueboard = Board.setUniqueBoard(heigth,heigth,numMines);
+		Logic logic = new Logic();
 		
 		while(logic.getState() == 0)
 		{
@@ -57,7 +64,6 @@ public class Main {
 			System.out.println("YOU WIN");
 			PrintBoard.prettyPrint(logic);
 		}
-			
 		else 
 		{
 			System.out.println("YOU LOSE");

@@ -38,6 +38,20 @@ public class InputHandler
 	 	 }
 	}
 
+	public int[] getNumbers(String numbers)
+	{
+		StringTokenizer sTokenizer  = new StringTokenizer(numbers);
+		int size = sTokenizer.countTokens();
+		int temp[] = new int[size];
+		
+		for(int i = 0; i < size; ++i)
+		{
+			temp[i] = Integer.parseInt(sTokenizer.nextToken());
+		}
+		return temp;
+		
+	}
+	
 	public int getHeight() {
 		return height;
 	}
