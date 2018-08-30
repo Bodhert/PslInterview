@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) 
 	{
 		Scanner sc = new Scanner(System.in);
-		Board uniqueboard = Board.setUniqueBoard(5,5,1);
+		Board uniqueboard = Board.setUniqueBoard(3,3,2);
 		Logic logic = new Logic();
 		InputHandler input = new InputHandler();
 		
@@ -24,28 +24,44 @@ public class Main {
 			j = input.getWidht();
 			if(option.equals("U"))
 			{
-				logic.openCells(i, j);
-				logic.ModifyState(i, j);
+				try 
+				{					
+					logic.ModifyState(i, j);
+				} 
+				catch(ArrayIndexOutOfBoundsException e)
+				{
+					System.out.println("Out of bounds Indexes");
+				}
 			}
 			else if(option.equals("M"))
 			{
-				logic.putFlag(i, j);
+				try
+				{
+					logic.putFlag(i, j);
+					
+				}
+				catch(ArrayIndexOutOfBoundsException e)
+				{
+					System.out.println("Out of bound Indexes");
+				}
 			}
 			else
 				System.out.println("unrecogniced option");
 			
 			System.out.println();
-			PrintBoard.prettyPrint(logic);
 			System.out.println();
 		}
 		
-		
 		if(logic.getState() == 1)
+		{			
 			System.out.println("YOU WIN");
+			PrintBoard.prettyPrint(logic);
+		}
+			
 		else 
 		{
 			System.out.println("YOU LOSE");
-			PrintBoard.PrintAns(uniqueboard); // debug purposes
+			PrintBoard.PrintAns(uniqueboard); 
 		}
 		
 		System.out.println();
