@@ -12,7 +12,6 @@ public class Board
 	private static Board uniqueBoard;
 	private int width,height,mines; //height = i, width j
 	private int [][] BoardRepresentation;
-	private boolean [][] BoardMoves;
 	
 	private Board(int height, int width, int mines) 
 	{
@@ -20,7 +19,6 @@ public class Board
 		this.width = width;
 		this.mines = mines;
 		BoardRepresentation = new int[height][width];
-		BoardMoves = new boolean[height][width];
 		setBoardRepresentation();
 	}
 	
@@ -108,15 +106,6 @@ public class Board
 	public int getBoardRepresentation(int i , int j) 
 	{
 		return BoardRepresentation[i][j];
-	}
-
-	public boolean getBoardMove(int i, int j) {
-		return BoardMoves[i][j];
-	}
-	
-	public void setTrueBoardMove(int i, int j) 
-	{
-		BoardMoves[i][j] = true;
 	}
 
 }
