@@ -1,5 +1,10 @@
 package com.bodhert.maven.pslMineSweeper;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public class Board 
 {
 	
@@ -20,9 +25,42 @@ public class Board
 	
 	private void setBoardRepresentation()
 	{
-		//TODO write code logic
+		int tempMines = mines;
+		// i could guarantee this method in exactly o(n^2)
+		Random randomI = new Random();
+		Random randomJ = new Random();
+		final int [] dr = {1,1,0,-1,-1,-1, 0, 1};
+		final int [] dc = {0,1,1, 1, 0,-1,-1,-1};
+		while(tempMines > 0)
+		{
+			int i,j;
+			// TODO A better loop
+			while(true)
+			{
+				i = randomI.nextInt(height);
+				j = randomJ.nextInt(width);
+				if(BoardRepresentation[i][j] != 9) break;
+			}
+			
+			for(int d = 0; d < 8; ++d)
+			{
+				int checkcellI = i + dr[d];
+				int checkcellJ = j + dc[d];
+				if( areInRange(checkcellI,checkcellJ))
+				{
+					BoardRepresentation[checkcellI][checkcellJ]++;
+				}
+			}
+			tempMines--;
+		}
+		
 	}
 	
+	
+	private boolean areInRange(int i, int j)
+	{
+		return (i >= 0 && i < height) && (j >= 0 && j < width);
+	}
 	
 	public static Board setUniqueBoard(int height, int width, int mines)
 	{

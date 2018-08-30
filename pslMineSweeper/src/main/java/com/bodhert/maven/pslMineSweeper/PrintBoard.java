@@ -2,15 +2,17 @@ package com.bodhert.maven.pslMineSweeper;
 
 public class PrintBoard 
 {
+	
+	// TODO if the numbers advance eg 10..11..12 it desubicated the index
 	public static void prettyPrintBoard(Board uniqueBoard)
 	{
-		int height = uniqueBoard.getWidth();
+		int height = uniqueBoard.getHeight();
 		int widht = uniqueBoard.getWidth();
 		
 		//printing  indexes
 		System.out.print("   ");
-		for(int i = 0 ; i < height; ++i)
-			System.out.print(i + "  ");
+		for(int j = 0 ; j < widht; ++j)
+			System.out.print(j + "  ");
 		System.out.println();
 		
 		for(int i = 0; i < height; ++i)
