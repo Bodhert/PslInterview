@@ -71,11 +71,17 @@ public class PrintBoard
 					{
 						System.out.printf(" %d ", value);
 					}
-					else
-						System.out.print(" . ");
+					else if (value == 9)
+						System.out.print(" * ");
+					
+					else System.out.println(" . ");
 				}
-				else
-					System.out.print(" . ");
+				else if (logic.getFlag(i, j))
+				{
+					System.out.print(" P ");
+				}
+				else System.out.print(" . ");
+				
 			}
 			System.out.println();
 			System.out.println();

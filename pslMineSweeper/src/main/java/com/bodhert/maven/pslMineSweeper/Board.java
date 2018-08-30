@@ -107,5 +107,10 @@ public class Board
 	{
 		return BoardRepresentation[i][j];
 	}
+	
+	public int getNumOfMines()
+	{
+		return this.mines;
+	}
 
 }
